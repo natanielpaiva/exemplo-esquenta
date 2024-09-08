@@ -1,12 +1,13 @@
 document.getElementById('getWeather').addEventListener('click', function() {
     const city = document.getElementById('city').value;
-    const apiKey = process.env.API_KEY; // Substitua com sua chave de API
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=pt_br`;
+    const apiUrl = `/api/weather?city=${city}`; // Chama o backend na Vercel
 
     fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
-            if (data.cod === 200) {
+            if (data.error) {
+                document.getElementById('weatherResult').innerHTML = `<p>${data.error}</p>`;
+            } else {
                 const weather = `
                     <h2>${data.name}</h2>
                     <p>Temperatura: ${data.main.temp}°C</p>
@@ -15,8 +16,6 @@ document.getElementById('getWeather').addEventListener('click', function() {
                     <p>Vento: ${data.wind.speed} m/s</p>
                 `;
                 document.getElementById('weatherResult').innerHTML = weather;
-            } else {
-                document.getElementById('weatherResult').innerHTML = `<p>Cidade não encontrada.</p>`;
             }
         })
         .catch(error => {
