@@ -1,13 +1,13 @@
-// server.js
 const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
+const path = require('path'); // Corrigido: Importação do módulo path
 
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
-
+// Servindo arquivos estáticos da pasta 'public'
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Serve o index.html apenas para rotas que não são arquivos estáticos
@@ -156,7 +156,6 @@ function getScoreboard() {
         score: player.score
     }));
 }
-
 
 const port = process.env.PORT || 3000;
 server.listen(port, () => {
