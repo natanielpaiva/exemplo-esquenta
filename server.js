@@ -9,6 +9,13 @@ const io = new Server(server);
 
 // Servindo arquivos estáticos da pasta 'public'
 app.use(express.static('public'));
+// Servindo arquivos estáticos da pasta 'public'
+
+
+// Redireciona todas as requisições para o index.html para suportar roteamento
+app.get('*', (req, res) => {
+  res.sendFile(__dirname + '/public/index.html');
+});
 
 let waitingPlayer = null;
 let games = {};
@@ -151,6 +158,7 @@ function getScoreboard() {
         score: player.score
     }));
 }
+
 
 server.listen(3000, () => {
     console.log('Server is running on http://localhost:3000');
