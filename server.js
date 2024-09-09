@@ -7,14 +7,12 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
-// Servindo arquivos estáticos da pasta 'public'
-app.use(express.static('public'));
-// Servindo arquivos estáticos da pasta 'public'
 
+app.use(express.static(path.join(__dirname, 'public')));
 
-// Redireciona todas as requisições para o index.html para suportar roteamento
+// Serve o index.html apenas para rotas que não são arquivos estáticos
 app.get('*', (req, res) => {
-  res.sendFile(__dirname + '/public/index.html');
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 let waitingPlayer = null;
