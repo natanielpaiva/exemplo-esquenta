@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jockey Pow Online</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="login">
+        <h1>Jockey Pow Online</h1>
+        <input type="text" id="username" placeholder="Digite seu nome">
+        <button id="loginBtn">Entrar</button>
+    </div>
+    
+    <div id="game" style="display: none;">
+        <h2 id="opponent"></h2>
+        <button class="choice" data-choice="pedra">Pedra</button>
+        <button class="choice" data-choice="papel">Papel</button>
+        <button class="choice" data-choice="tesoura">Tesoura</button>
+        <p id="result"></p>
+        <button id="playAgain" style="display: none;">Jogar Novamente</button>
+    </div>
+
+    <p id="status"></p>
+
+    <div id="scoreboard" style="display: none;">
+        <h3>Placar</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Jogador</th>
+                    <th>Pontuação</th>
+                </tr>
+            </thead>
+            <tbody id="scoreboardBody"></tbody>
+        </table>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
