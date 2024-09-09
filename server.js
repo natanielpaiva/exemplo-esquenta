@@ -5,7 +5,14 @@ const path = require('path'); // Corrigido: Importação do módulo path
 
 const app = express();
 const server = http.createServer(app);
-const io = new Server(server);
+
+const io = new Server(server, {
+    cors: {
+      origin: "*", // Configura o CORS, ajuste conforme necessário
+      methods: ["GET", "POST"]
+    },
+    transports: ['polling'] // Força o uso de polling para compatibilidade
+  });
 
 // Servindo arquivos estáticos da pasta 'public'
 app.use(express.static(path.join(__dirname, 'public')));

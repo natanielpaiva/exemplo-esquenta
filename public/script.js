@@ -1,4 +1,7 @@
-const socket = io();
+
+const socket = io({
+    transports: ['polling'] // Força o uso de polling
+  });
 
 document.getElementById('loginBtn').addEventListener('click', () => {
     const username = document.getElementById('username').value.trim();
